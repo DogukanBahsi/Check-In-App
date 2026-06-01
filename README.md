@@ -1,56 +1,72 @@
-# Syntax Error Hotel — Online Check-In Uygulaması
+<div align="center">
 
-> **Yazılım Mühendisliği Dersi Dönem Projesi**  
-> Flutter · Firebase · Cloud Firestore · EmailJS
+<img src="https://img.shields.io/badge/Flutter-3.10.4-02569B?style=for-the-badge&logo=flutter&logoColor=white"/>
+<img src="https://img.shields.io/badge/Dart-3.0-0175C2?style=for-the-badge&logo=dart&logoColor=white"/>
+<img src="https://img.shields.io/badge/Firebase-Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black"/>
+<img src="https://img.shields.io/badge/Platform-Android%20%7C%20iOS-lightgrey?style=for-the-badge&logo=android&logoColor=white"/>
 
----
+# 🏨 Syntax Error Hotel
+### Online Check-In Uygulaması
 
-## İçindekiler
+> **Yazılım Mühendisliği Dersi — Dönem Projesi**
 
-- [Proje Hakkında](#proje-hakkında)
-- [Özellikler](#özellikler)
-- [Mimari ve Teknolojiler](#mimari-ve-teknolojiler)
-- [Proje Yapısı](#proje-yapısı)
-- [Ekran Görüntüleri](#ekran-görüntüleri)
-- [Kurulum ve Çalıştırma](#kurulum-ve-çalıştırma)
-- [Veritabanı Şeması](#veritabanı-şeması)
+*Flutter · Firebase Cloud Firestore · EmailJS · QR Code · PDF*
 
----
-
-## Proje Hakkında
-
-Bu proje, "Syntax Error Hotel" adlı kurgusal bir otelin mobil check-in süreçlerini dijitalleştirmek amacıyla geliştirilmiş bir **Flutter** uygulamasıdır. Uygulama; misafirlerin rezervasyon oluşturmasına, online check-in/check-out yapmasına, oda servisi talep etmesine ve fatura görüntülemesine olanak tanır. Otel yöneticileri ise ayrı bir **Admin Terminal** paneli üzerinden odaları, talepleri ve misafir hareketlerini gerçek zamanlı olarak takip edebilir.
+</div>
 
 ---
 
-## Özellikler
+## 📋 İçindekiler
 
-### Misafir Tarafı
-
-| Özellik | Açıklama |
-|---|---|
-| Kayıt & Giriş | E-posta doğrulamalı (OTP) kullanıcı kaydı, şifreli giriş |
-| Rezervasyon Oluşturma | Tarih, gün sayısı, kişi sayısı ve interaktif kat krokisi üzerinden oda seçimi |
-| Online Check-in | Rezervasyon kodu ile check-in, QR kod oluşturma |
-| Aktif Oda Yönetimi | Oda servisi siparişi, anlık durum takibi |
-| Talep Bildir | Teknik arıza, temizlik ve oda servisi kategorilerinde destek talebi |
-| Fatura / Geçmiş | Geçmiş konaklamaların listelenmesi, PDF fatura oluşturma ve yazdırma |
-| Profil Ayarları | Telefon ve şifre güncelleme |
-| Destek Merkezi | Sık sorulan sorular (SSS) accordion listesi |
-
-### Yönetici Tarafı
-
-| Özellik | Açıklama |
-|---|---|
-| Admin Terminal | Cyberpunk temalı, gerçek zamanlı admin paneli |
-| Canlı Oda Durum Haritası | Kat bazlı oda doluluk görünümü (Dolu / Boş / Admin) |
-| Aktif Talepler | Misafirlerden gelen tüm servis ve temizlik taleplerinin yönetimi |
-| Log Akışı | Sistem hareketlerinin anlık log kaydı |
-| Filtreli Görünüm | Tümü / Servis / Temizlik kategorilerine göre talep filtreleme |
+- [Proje Hakkında](#-proje-hakkında)
+- [Özellikler](#-özellikler)
+- [Mimari ve Teknolojiler](#-mimari-ve-teknolojiler)
+- [Proje Yapısı](#-proje-yapısı)
+- [Ekran Görüntüleri](#-ekran-görüntüleri)
+- [Kurulum ve Çalıştırma](#-kurulum-ve-çalıştırma)
+- [Veritabanı Şeması](#-veritabanı-şeması)
 
 ---
 
-## Mimari ve Teknolojiler
+## 🎯 Proje Hakkında
+
+Bu proje, **"Syntax Error Hotel"** adlı kurgusal bir otelin mobil check-in süreçlerini dijitalleştirmek amacıyla geliştirilmiş bir **Flutter** uygulamasıdır.
+
+Uygulama iki farklı kullanıcı rolü sunar:
+
+- 🧳 **Misafir** — Rezervasyon oluşturma, online check-in/check-out, oda servisi, fatura görüntüleme
+- 🖥️ **Yönetici** — Gerçek zamanlı oda haritası, servis/temizlik talepleri ve sistem log takibi
+
+---
+
+## ✨ Özellikler
+
+### 🧳 Misafir Tarafı
+
+| # | Özellik | Açıklama |
+|:---:|---|---|
+| 1 | 🔐 Kayıt & Giriş | E-posta doğrulamalı (OTP) kullanıcı kaydı, şifreli giriş |
+| 2 | 📅 Rezervasyon Oluşturma | Tarih, gün sayısı, kişi sayısı ve interaktif kat krokisi üzerinden oda seçimi |
+| 3 | ✅ Online Check-in | Rezervasyon kodu ile check-in, QR kod oluşturma |
+| 4 | 🚪 Aktif Oda Yönetimi | Oda servisi siparişi, anlık durum takibi |
+| 5 | 🔔 Talep Bildir | Teknik arıza, temizlik ve oda servisi kategorilerinde destek talebi |
+| 6 | 🧾 Fatura / Geçmiş | Geçmiş konaklamaların listelenmesi, PDF fatura oluşturma ve yazdırma |
+| 7 | 👤 Profil Ayarları | Telefon ve şifre güncelleme |
+| 8 | ❓ Destek Merkezi | Sık sorulan sorular (SSS) accordion listesi |
+
+### 🖥️ Yönetici Tarafı
+
+| # | Özellik | Açıklama |
+|:---:|---|---|
+| 1 | 💻 Admin Terminal | Cyberpunk temalı, gerçek zamanlı admin paneli |
+| 2 | 🗺️ Canlı Oda Durum Haritası | Kat bazlı oda doluluk görünümü (Dolu / Boş / Admin) |
+| 3 | 📢 Aktif Talepler | Misafirlerden gelen tüm servis ve temizlik taleplerinin yönetimi |
+| 4 | 📜 Log Akışı | Sistem hareketlerinin anlık log kaydı |
+| 5 | 🔍 Filtreli Görünüm | Tümü / Servis / Temizlik kategorilerine göre talep filtreleme |
+
+---
+
+## 🏗️ Mimari ve Teknolojiler
 
 ```
 Flutter (Dart)
@@ -64,10 +80,12 @@ Flutter (Dart)
     └── pdf + printing           → PDF fatura oluşturma
 ```
 
-**Kullanılan Paketler (`pubspec.yaml`)**
+<br>
+
+**📦 Kullanılan Paketler**
 
 | Paket | Sürüm | Amaç |
-|---|---|---|
+|:---:|:---:|---|
 | `firebase_core` | ^3.0.0 | Firebase bağlantısı |
 | `cloud_firestore` | ^5.0.0 | Gerçek zamanlı veritabanı |
 | `qr_flutter` | ^4.1.0 | QR kod üretimi |
@@ -77,7 +95,7 @@ Flutter (Dart)
 
 ---
 
-## Proje Yapısı
+## 📁 Proje Yapısı
 
 ```
 lib/
@@ -93,13 +111,15 @@ lib/
 
 ---
 
-## Ekran Görüntüleri
+## 📱 Ekran Görüntüleri
 
 ### Giriş ve Ana Sayfa
 
 | Giriş | Ana Sayfa |
 |:---:|:---:|
 | ![Giriş](screenshots/05_check_in.jpeg) | ![Ana Sayfa](screenshots/03_rezervasyon_olustur.jpeg) |
+
+---
 
 ### Misafir Ekranları
 
@@ -119,6 +139,8 @@ lib/
 |:---:|:---:|
 | ![Ana Sayfa](screenshots/08_talep_bildir.jpeg) | ![Destek](screenshots/09_admin_dashboard.jpeg) |
 
+---
+
 ### Yönetici Paneli (Admin Terminal)
 
 | Tümü Admin Paneli | Log Admin Paneli | Servis Admin Paneli | Temizlik Admin Paneli |
@@ -127,14 +149,16 @@ lib/
 
 ---
 
-## Kurulum ve Çalıştırma
+## 🚀 Kurulum ve Çalıştırma
 
 ### Gereksinimler
 
-- Flutter SDK >= 3.10.4
-- Dart SDK >= 3.0
-- Android Studio veya VS Code
-- Firebase projesi (Firestore aktif)
+| Araç | Versiyon |
+|---|---|
+| Flutter SDK | >= 3.10.4 |
+| Dart SDK | >= 3.0 |
+| IDE | Android Studio / VS Code |
+| Backend | Firebase projesi (Firestore aktif) |
 
 ### Adımlar
 
@@ -153,40 +177,45 @@ flutter pub get
 flutter run
 ```
 
-> **Not:** `google-services.json` (Android) ve `GoogleService-Info.plist` (iOS) dosyaları kendi Firebase projenize ait olmalıdır. Repo'daki dosyalar örnek amaçlıdır.
+> [!NOTE]
+> `google-services.json` (Android) ve `GoogleService-Info.plist` (iOS) dosyaları kendi Firebase projenize ait olmalıdır. Repo'daki dosyalar örnek amaçlıdır.
 
 ---
 
-## Veritabanı Şeması
+## 🗄️ Veritabanı Şeması
 
 ### `reservations` Koleksiyonu
 
 | Alan | Tip | Açıklama |
-|---|---|---|
-| `reservationCode` | String | Benzersiz rezervasyon kodu |
-| `name` / `surname` | String | Misafir adı soyadı |
-| `identityNumber` | String | TC / Pasaport no |
-| `roomNumber` | String | Oda numarası |
-| `roomType` | String | Oda tipi |
-| `checkInDate` | Timestamp | Giriş tarihi |
-| `stayDays` | int | Konaklama süresi (gün) |
-| `personCount` | int | Kişi sayısı |
-| `isCheckedIn` / `isCheckedOut` | bool | Check-in/out durumu |
-| `includeBreakfast` / `includeDinner` | bool | Yemek paketi tercihleri |
-| `totalPrice` | double | Toplam ücret (€) |
-| `roomServiceOrders` | Array | Oda servisi siparişleri |
-| `housekeepingRequests` | Array | Temizlik/teknik talepler |
+|---|:---:|---|
+| `reservationCode` | `String` | Benzersiz rezervasyon kodu |
+| `name` / `surname` | `String` | Misafir adı soyadı |
+| `identityNumber` | `String` | TC / Pasaport no |
+| `roomNumber` | `String` | Oda numarası |
+| `roomType` | `String` | Oda tipi |
+| `checkInDate` | `Timestamp` | Giriş tarihi |
+| `stayDays` | `int` | Konaklama süresi (gün) |
+| `personCount` | `int` | Kişi sayısı |
+| `isCheckedIn` / `isCheckedOut` | `bool` | Check-in/out durumu |
+| `includeBreakfast` / `includeDinner` | `bool` | Yemek paketi tercihleri |
+| `totalPrice` | `double` | Toplam ücret (€) |
+| `roomServiceOrders` | `Array` | Oda servisi siparişleri |
+| `housekeepingRequests` | `Array` | Temizlik/teknik talepler |
 
 ### `users` Koleksiyonu
 
 | Alan | Tip | Açıklama |
-|---|---|---|
-| `name` / `surname` | String | Ad soyad |
-| `identityNumber` | String | TC / Pasaport no |
-| `email` / `password` | String | Giriş bilgileri |
-| `phone` | String | Telefon numarası |
-| `country` | String | Uyruk |
+|---|:---:|---|
+| `name` / `surname` | `String` | Ad soyad |
+| `identityNumber` | `String` | TC / Pasaport no |
+| `email` / `password` | `String` | Giriş bilgileri |
+| `phone` | `String` | Telefon numarası |
+| `country` | `String` | Uyruk |
 
 ---
 
-*Syntax Error Hotel — Yazılım Mühendisliği Projesi*
+<div align="center">
+
+**Syntax Error Hotel &nbsp;·&nbsp; Yazılım Mühendisliği Projesi**
+
+</div>
