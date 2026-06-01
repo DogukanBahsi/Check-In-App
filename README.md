@@ -121,9 +121,9 @@ lib/
 
 ### Yönetici Paneli (Admin Terminal)
 
-| Admin Paneli | Admin Paneli | Admin Paneli | Temizlik Admin Paneli |
+| Tümü Admin Paneli | Log Admin Paneli | Servis Admin Paneli | Temizlik Admin Paneli |
 |:---:|:---:|:---:|:---:|
-| ![Admin Paneli](screenshots/04_rezervasyonlarim.jpeg) | ![Admin Paneli](screenshots/06_aktif_oda.jpeg) | ![Servis Admin Paneli](screenshots/11_admin_servis.jpeg) | ![Temizlik Admin](screenshots/14_destek.jpeg) |
+| ![Admin Paneli](screenshots/04_rezervasyonlarim.jpeg) | ![Admin Paneli](screenshots/06_aktif_oda.jpeg) | ![Admin Paneli](screenshots/11_admin_servis.jpeg) | ![Temizlik Admin](screenshots/14_destek.jpeg) |
 
 ---
 
