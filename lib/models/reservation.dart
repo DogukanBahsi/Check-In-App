@@ -17,6 +17,7 @@ class HotelReservation {
   final bool includeBreakfast;
   final bool includeDinner;
   final double totalPrice;
+  final List<dynamic> housekeepingRequests;
   final List<Map<String, dynamic>> roomServiceOrders;
 
   HotelReservation({
@@ -37,6 +38,8 @@ class HotelReservation {
     required this.includeDinner,
     required this.totalPrice,
     this.roomServiceOrders = const [],
+    this.housekeepingRequests = const [],
+
   });
 
   factory HotelReservation.fromFirestore(Map<String, dynamic> data, String documentId) {
@@ -58,6 +61,7 @@ class HotelReservation {
       includeDinner: data['includeDinner'] ?? false,
       totalPrice: (data['totalPrice'] ?? 0.0).toDouble(),
       roomServiceOrders: List<Map<String, dynamic>>.from(data['roomServiceOrders'] ?? []),
+      housekeepingRequests: data['housekeepingRequests'] ?? [],
     );
   }
 }

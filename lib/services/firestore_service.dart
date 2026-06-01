@@ -1,18 +1,17 @@
   import 'package:cloud_firestore/cloud_firestore.dart';
   import '../models/reservation.dart';
   import 'dart:math';
-  
+
   class FirestoreService {
     final FirebaseFirestore _db = FirebaseFirestore.instance;
-  
-    // Get all reservations for a specific identity number
+
     Future<List<HotelReservation>> getUserReservations(String identityNumber) async {
       try {
         var querySnapshot = await _db
             .collection('hotel_reservations')
             .where('identityNumber', isEqualTo: identityNumber)
             .get();
-  
+
         return querySnapshot.docs
             .map((doc) => HotelReservation.fromFirestore(doc.data(), doc.id))
             .toList();
@@ -21,8 +20,34 @@
         rethrow;
       }
     }
-  
-    // Search for a hotel reservation by Reservation Code and Surname
+
+    Future<bool> isRoomAvailable(String roomNumber, DateTime checkInDate, int stayDays) async {
+      try {
+        DateTime checkOutDate = checkInDate.add(Duration(days: stayDays));
+
+        var querySnapshot = await _db
+            .collection('hotel_reservations')
+            .where('roomNumber', isEqualTo: roomNumber)
+            .where('isCheckedOut', isEqualTo: false)
+            .get();
+
+        for (var doc in querySnapshot.docs) {
+          Map<String, dynamic> data = doc.data();
+          DateTime existingCheckIn = (data['checkInDate'] as Timestamp).toDate();
+          int existingStayDays = data['stayDays'] ?? 1;
+          DateTime existingCheckOut = existingCheckIn.add(Duration(days: existingStayDays));
+
+          if (checkInDate.isBefore(existingCheckOut) && checkOutDate.isAfter(existingCheckIn)) {
+            return false;
+          }
+        }
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+
     Future<HotelReservation?> getReservation(String code, String surname) async {
       try {
         var querySnapshot = await _db
@@ -31,7 +56,7 @@
             .where('surname', isEqualTo: surname.toUpperCase())
             .limit(1)
             .get();
-  
+
         if (querySnapshot.docs.isNotEmpty) {
           var doc = querySnapshot.docs.first;
           return HotelReservation.fromFirestore(doc.data(), doc.id);
@@ -41,8 +66,6 @@
         rethrow;
       }
     }
-  
-    // Complete hotel check-in process
     Future<bool> completeHotelCheckIn(String docId) async {
       try {
         await _db.collection('hotel_reservations').doc(docId).update({
@@ -54,8 +77,28 @@
         rethrow;
       }
     }
-  
-    // Complete hotel check-out process
+    Future<void> updateUserInfo(String email, {String? phone, String? password}) async {
+      try {
+        Map<String, dynamic> updates = {};
+        if (phone != null && phone.isNotEmpty) updates['phone'] = phone;
+        if (password != null && password.isNotEmpty) updates['password'] = password;
+
+        if (updates.isNotEmpty) {
+          var querySnapshot = await _db
+              .collection('users')
+              .where('email', isEqualTo: email)
+              .limit(1)
+              .get();
+
+          if (querySnapshot.docs.isNotEmpty) {
+            await _db.collection('users').doc(querySnapshot.docs.first.id).update(updates);
+          }
+        }
+      } catch (e) {
+        rethrow;
+      }
+    }
+
     Future<bool> completeHotelCheckOut(String docId) async {
       try {
         await _db.collection('hotel_reservations').doc(docId).update({
@@ -67,15 +110,13 @@
       }
     }
 
-    // Add room service cost and items to the reservation
     Future<void> addRoomServiceOrder(String docId, double totalAmount, List<Map<String, dynamic>> items) async {
       await _db.collection('hotel_reservations').doc(docId).update({
-        'totalPrice': FieldValue.increment(totalAmount), // Mevcut fiyatın üstüne ekler
-        'roomServiceOrders': FieldValue.arrayUnion(items), // Ürünleri listeye ekler
+        'totalPrice': FieldValue.increment(totalAmount),
+        'roomServiceOrders': FieldValue.arrayUnion(items),
       });
     }
 
-    // Add room service cost to the reservation (Legacy)
     Future<void> addRoomServiceCost(String docId, double amount) async {
       try {
         await _db.collection('hotel_reservations').doc(docId).update({
@@ -85,8 +126,7 @@
         rethrow;
       }
     }
-  
-    // Delete a reservation
+
     Future<bool> deleteReservation(String docId) async {
       try {
         await _db.collection('hotel_reservations').doc(docId).delete();
@@ -95,8 +135,7 @@
         rethrow;
       }
     }
-  
-    // Register a new user
+
     Future<bool> registerUser({
       required String name,
       required String surname,
@@ -132,7 +171,6 @@
         ]),
       });
     }
-    // Login for Guest
     Future<Map<String, dynamic>?> loginGuest(String email, String password) async {
       try {
         var querySnapshot = await _db
@@ -142,7 +180,7 @@
             .where('role', isEqualTo: 'guest')
             .limit(1)
             .get();
-  
+
         if (querySnapshot.docs.isNotEmpty) {
           return querySnapshot.docs.first.data();
         }
@@ -151,8 +189,26 @@
         rethrow;
       }
     }
-  
-    // Create a new reservation
+    Stream<List<HotelReservation>> getReservationsStream() {
+      return _db.collection('hotel_reservations').snapshots().map((snapshot) {
+        return snapshot.docs.map((doc) => HotelReservation.fromFirestore(doc.data(), doc.id)).toList();
+      });
+    }
+    Future<List<HotelReservation>> getAllReservationsForAdmin() async {
+      try {
+        var querySnapshot = await _db
+            .collection('hotel_reservations')
+            .orderBy('createdAt', descending: true)
+            .get();
+
+        return querySnapshot.docs
+            .map((doc) => HotelReservation.fromFirestore(doc.data(), doc.id))
+            .toList();
+      } catch (e) {
+        print("Firestore Admin Hatası: $e");
+        rethrow;
+      }
+    }
     Future<String> createReservation({
       required String name,
       required String surname,
@@ -169,7 +225,7 @@
       try {
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         String resCode = String.fromCharCodes(Iterable.generate(6, (_) => chars.codeUnitAt(Random().nextInt(chars.length))));
-  
+
         await _db.collection('hotel_reservations').add({
           'reservationCode': resCode,
           'name': name.toUpperCase(),
@@ -189,7 +245,7 @@
           'createdAt': FieldValue.serverTimestamp(),
           'roomServiceOrders': [],
         });
-  
+
         return resCode;
       } catch (e) {
         rethrow;
