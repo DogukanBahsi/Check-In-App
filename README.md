@@ -95,41 +95,35 @@ lib/
 
 ## Ekran Görüntüleri
 
-### Giriş ve Kimlik Doğrulama
+### Giriş ve Ana Sayfa
 
-| Misafir Girişi | Misafir Ana Paneli |
+| Giriş | Ana Sayfa |
 |:---:|:---:|
-| ![Giriş Ekranı](screenshots/01_giris_ekrani.jpeg) | ![Dashboard](screenshots/02_misafir_dashboard.jpeg) |
+| ![Giriş](screenshots/05_check_in.jpeg) | ![Ana Sayfa](screenshots/03_rezervasyon_olustur.jpeg) |
 
-### Rezervasyon İşlemleri
+### Misafir Ekranları
 
-| Rezervasyon Oluştur | Rezervasyonlarım |
+| Rezervasyon | Konaklama Bilgi Giriş Ekranı |
 |:---:|:---:|
-| ![Rezervasyon Yap](screenshots/03_rezervasyon_olustur.jpeg) | ![Rezervasyonlarım](screenshots/04_rezervasyonlarim.jpeg) |
+| ![Rezervasyon](screenshots/01_giris_ekrani.jpeg) | ![Konaklama Bilgi Giriş](screenshots/02_misafir_dashboard.jpeg) |
 
-### Check-in / Oda Yönetimi
-
-| Check-in | Aktif Oda |
+| Rezervasyon Ekranı | Talep Ekranı |
 |:---:|:---:|
-| ![Check-in](screenshots/05_check_in.jpeg) | ![Aktif Oda](screenshots/06_aktif_oda.jpeg) |
+| ![Rezervasyon Ekranı](screenshots/13_profil.jpeg) | ![Talep Ekranı](screenshots/07_fatura.jpeg) |
 
-### Fatura ve Destek
-
-| Fatura / Geçmiş | Talep Bildir |
+| Aktif Odalar | Faturalarım / Geçmiş |
 |:---:|:---:|
-| ![Fatura](screenshots/07_fatura.jpeg) | ![Talep Bildir](screenshots/08_talep_bildir.jpeg) |
+| ![Aktif Odalar](screenshots/12_admin_temizlik.jpeg) | ![Faturalarım](screenshots/10_admin_log.jpeg) |
+
+| Ana Sayfa | Destek ve Bilgi Merkezi |
+|:---:|:---:|
+| ![Ana Sayfa](screenshots/08_talep_bildir.jpeg) | ![Destek](screenshots/09_admin_dashboard.jpeg) |
 
 ### Yönetici Paneli (Admin Terminal)
 
-| Canlı Oda Haritası | Servis Talepleri | Temizlik Talepleri | Log Akışı |
+| Admin Paneli | Admin Paneli | Admin Paneli | Temizlik Admin Paneli |
 |:---:|:---:|:---:|:---:|
-| ![Admin Dashboard](screenshots/09_admin_dashboard.jpeg) | ![Servis](screenshots/11_admin_servis.jpeg) | ![Temizlik](screenshots/12_admin_temizlik.jpeg) | ![Log](screenshots/10_admin_log.jpeg) |
-
-### Profil ve Destek Merkezi
-
-| Profil Ayarları | Destek Merkezi |
-|:---:|:---:|
-| ![Profil](screenshots/13_profil.jpeg) | ![Destek](screenshots/14_destek.jpeg) |
+| ![Admin Paneli](screenshots/04_rezervasyonlarim.jpeg) | ![Admin Paneli](screenshots/06_aktif_oda.jpeg) | ![Admin Paneli](screenshots/11_admin_servis.jpeg) | ![Temizlik Admin](screenshots/14_destek.jpeg) |
 
 ---
 
